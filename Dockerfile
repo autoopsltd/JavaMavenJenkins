@@ -1,6 +1,6 @@
 FROM maven:alpine
 
-RUN apt-get update
+RUN apk update
 
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvn"]
