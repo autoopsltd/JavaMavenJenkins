@@ -5,7 +5,7 @@ pipeline {
          agent {
             dockerfile {
                reuseNode true
-               additionalBuildArgs '--tag autoopsltd:testing'
+               additionalBuildArgs '--tag autoopsltd/decMavenTest:testing'
                args '-v $HOME/.m2:/root/.m2'
             }
          }
@@ -23,7 +23,7 @@ pipeline {
          agent {
             dockerfile {
                reuseNode true
-               additionalBuildArgs '--tag autoopsltd:testing'
+               additionalBuildArgs '--tag autoopsltd/decMavenTest:testing'
                args '-v $HOME/.m2:/root/.m2'
             }
          }
@@ -43,8 +43,8 @@ pipeline {
       stage('Docker Tag & Push') {
          steps {
             withDockerRegistry([ credentialsId: "dockerhub", url: ""]) {
-               sh 'echo "blank1"'
-               sh 'echo "blank2"'
+               sh 'docker tag autoopsltd/decMavenTest:testing autoopsltd/decMavenTest:latest'
+               sh 'docker push autoopsltd/decMavenTest:latest'
             }
          }
       }
