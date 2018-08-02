@@ -12,6 +12,7 @@ pipeline {
          post {
             success {
                echo 'Maven packaging worked!'
+               archiveArtifacts: '**/target/*.war, **/target/*.jar'
             }
          }
       }
@@ -21,7 +22,7 @@ pipeline {
          }
          post {
             success {
-               junit '*/target/surefire-reports/*.xml'
+               junit '**/target/surefire-reports/*.xml'
                echo 'Maven testing passed!'
             }
             failure {
