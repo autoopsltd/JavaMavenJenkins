@@ -3,8 +3,7 @@ pipeline {
    stages {
       stage('Build') {
          agent {
-            docker {
-               image 'maven:alpine'
+            dockerfile {
                reuseNode true
                args '-v $HOME/.m2:/root/.m2'
             }
@@ -21,8 +20,7 @@ pipeline {
       }
       stage('Test') {
          agent {
-            docker {
-               image 'maven:alpine'
+            dockerfile {
                reuseNode true
                args '-v $HOME/.m2:/root/.m2'
             }
