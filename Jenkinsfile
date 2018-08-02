@@ -20,8 +20,12 @@ pipeline {
             sh 'mvn test'
          }
          post {
-            always {
+            success {
                junit '*/target/surefire-reports/*.xml'
+               echo 'Maven testing passed!'
+            }
+            failure {
+               echo 'Maven testing failed.'
             }
          }
       }
