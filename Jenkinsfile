@@ -12,7 +12,7 @@ pipeline {
          post {
             success {
                echo 'Maven packaging worked!'
-               archiveArtifacts: '**/target/*.war, **/target/*.jar'
+               archiveArtifacts artifacts: '**/target/*.war, **/target/*.jar'
             }
          }
       }
