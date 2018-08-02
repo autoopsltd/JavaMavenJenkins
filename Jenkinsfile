@@ -9,6 +9,7 @@ pipeline {
          agent {
             docker {
                image 'maven:alpine'
+               reuseNode true
                args '-v $HOME/.m2:/root/.m2'
             }
          }
@@ -26,6 +27,7 @@ pipeline {
          agent {
             docker {
                image 'maven:alpine'
+               reuseNode true
                args '-v $HOME/.m2:/root/.m2'
             }
          }
