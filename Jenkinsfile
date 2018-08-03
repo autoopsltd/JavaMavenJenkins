@@ -17,7 +17,6 @@ pipeline {
          }
          steps {
             sh 'mvn -B -DskipTests clean package'
-            sh 'mvn -DskipTests package'
          }
          post {
             success {
@@ -65,7 +64,7 @@ pipeline {
             }
          }
          steps {
-            sh 'echo "Built running container"'
+            sh 'mvn -B -DskipTests clean package'
          }
       }
       //stage('Launch Docker Container') {
