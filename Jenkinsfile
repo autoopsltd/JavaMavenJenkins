@@ -46,7 +46,7 @@ pipeline {
             }
          }
       }
-      stage('Run Findbugs') {
+      stage('Run Checkstyle') {
          agent {
             dockerfile {
                reuseNode true
@@ -55,10 +55,7 @@ pipeline {
             }
          }
          steps {
-            withMaven(options: [findbugsPublisher(), junitPublisher(ignoreAttachments: false)]) {
-               sh 'mvn site'
-               sh 'mvn findbugs:findbugs'
-            }
+               sh 'mvn checkstyle:checkstyle site'
          }
          post {
             success {
