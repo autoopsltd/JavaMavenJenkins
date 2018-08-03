@@ -63,7 +63,15 @@ pipeline {
             }
          }
          steps {
-            sh 'echo "created runnable container"'
+            sh 'mvn package'
+         }
+      }
+      stage('Docker Tag & Push Runnable') {
+         steps {
+            withDockerRegistry([ credentialsId: "dockerhub", url: "http://localhost:5000"]) {
+               sh 'docker tag autoopsltd/decmaventest:run localhost:5000/decmaventest:run'
+               sh 'docker push localhost:5000/decmaventest:run'
+            }
          }
       }
       //stage('Launch Docker Container') {
