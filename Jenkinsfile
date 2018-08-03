@@ -16,7 +16,7 @@ pipeline {
             }
          }
          steps {
-            sh 'mvn -B -DskipTests clean resources'
+            sh 'mvn -B -DskipTests clean site'
          }
          post {
             success {
