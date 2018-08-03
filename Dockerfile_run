@@ -1,4 +1,4 @@
 FROM maven:alpine
 COPY . /root
 WORKDIR /root
-CMD ["mvn seedstack:run"]
+CMD ["./mvnw spring-boot:run"]
