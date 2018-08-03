@@ -2,4 +2,4 @@ FROM maven:alpine
 COPY . /root
 WORKDIR /root
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
-CMD unset MAVEN_CONFIG && env && ./mvnw spring-boot:run
+CMD unset MAVEN_CONFIG && ./mvnw spring-boot:run

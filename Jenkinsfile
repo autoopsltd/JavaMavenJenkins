@@ -17,7 +17,7 @@ pipeline {
          }
          steps {
             sh 'mvn clean package'
-            sh 'unset MAVEN_CONFIG && env && cd /root && ./mvnw spring-boot:start'
+            sh 'unset MAVEN_CONFIG && cd /root && ./mvnw spring-boot:start'
          }
          post {
             success {
@@ -37,8 +37,8 @@ pipeline {
          }
          steps {
             //sh 'mvn -B -DskipTests clean package'
-            sh 'echo "Runnable container created"'
-            //sh 'unset MAVEN_CONFIG && env && /root/mvnw spring-boot:start'
+            // sh 'echo "Runnable container created"'
+            sh 'unset MAVEN_CONFIG && cd /root && ./mvnw spring-boot:start'
          }
       }
       stage('Docker Tag & Push Runnable') {
