@@ -37,8 +37,8 @@ pipeline {
          }
          steps {
             //sh 'mvn -B -DskipTests clean package'
-            // sh 'echo "Runnable container created"'
-            sh 'unset MAVEN_CONFIG && cd /root && ./mvnw spring-boot:start'
+            sh 'echo "Runnable container built"'
+            // sh 'unset MAVEN_CONFIG && cd /root && ./mvnw spring-boot:start'
          }
       }
       stage('Docker Tag & Push Runnable') {
