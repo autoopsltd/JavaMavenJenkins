@@ -55,6 +55,16 @@ pipeline {
             }
          }
       }
+      stage('Build Runnable Container') {
+         agent {
+            dockerfile {
+               filename 'Dockerfile_run'
+               reuseNode true
+               additionalBuildArgs '--tag autoopsltd/decmaventest:run'
+               args '-v $HOME/.m2:/root/.m2'
+            }
+         }
+      }
       //stage('Launch Docker Container') {
       //   when {
       //      branch 'master'
