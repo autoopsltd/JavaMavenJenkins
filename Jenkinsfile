@@ -1,5 +1,8 @@
 pipeline {
    agent any
+   triggers {
+      pollSCM('H/30 * * * *')
+   }
    stages {
       stage('Maven Build') {
          agent {
