@@ -35,6 +35,9 @@ pipeline {
          }
          steps {
             sh 'mvn test'
+            withMaven(options: [findbugsPublisher(), junitPublisher(ignoreAttachments: false)]) {
+               sh 'mvn clean findbugs:findbugs package'
+            }
          }
          post {
             success {
