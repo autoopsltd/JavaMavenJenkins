@@ -57,7 +57,6 @@ pipeline {
       stage('Build Runnable Container') {
          agent {
             dockerfile {
-               filename 'Dockerfile_run'
                reuseNode true
                additionalBuildArgs '--tag autoopsltd/decmaventest:run'
                args '-v $HOME/.m2:/root/.m2'
@@ -66,7 +65,7 @@ pipeline {
          steps {
             //sh 'mvn -B -DskipTests clean package'
             //sh 'echo "Runnable container created"'
-            sh './mvnw spring-boot:start'
+            sh '/root/mvnw spring-boot:start'
          }
       }
       stage('Docker Tag & Push Runnable') {
