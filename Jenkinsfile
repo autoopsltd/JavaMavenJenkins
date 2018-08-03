@@ -62,18 +62,21 @@ pipeline {
       success {
          echo 'Declarative pipeline job "decMavenTest" completed successfully and without error.'
          mail to: 'autoopsltd@outlook.com',
+              from: 'jenkins-admin@admin.com',
               subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
               body: "Pipeline job completed successfully ${env.BUILD_URL}"
       }
       unstable {
          echo 'Declarative pipeline job "decMavenTest" is unstable - please view the logs.'
          mail to: 'autoopsltd@outlook.com',
+              from: 'jenkins-admin@admin.com',
               subject: "Unstable Pipeline: ${currentBuild.fullDisplayName}",
               body: "Unstable - Something is wrong with ${env.BUILD_URL}"
       }
       failure {
          echo 'Declarative pipeline job "decMavenTest" failed - please view the logs.'
          mail to: 'autoopsltd@outlook.com',
+              from: 'jenkins-admin@admin.com',
               subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
               body: "Failed - Something is wrong with ${env.BUILD_URL}"
       }
