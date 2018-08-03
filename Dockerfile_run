@@ -1,5 +1,4 @@
 FROM maven:alpine
 COPY . /root
 WORKDIR /root
-ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
-CMD ["bash", "-c", "./mvnw", "spring-boot:run"]
+ENTRYPOINT ./mvnw spring-boot:run
