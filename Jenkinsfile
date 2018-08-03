@@ -55,6 +55,20 @@ pipeline {
          }
       }
    }
+   post {
+      always {
+         echo 'Finshed running "decMavenTest" declarative pipeline job.'
+      }
+      success {
+         echo 'Declarative pipeline job "decMavenTest" completed successfully and without error.'
+      }
+      unstable {
+         echo 'Declarative pipeline job "decMavenTest" is unstable - please view the logs.'
+      }
+      failure {
+         echo 'Declarative pipeline job "decMavenTest" failed - please view the logs.'
+      }
+   }
 }
 
 
