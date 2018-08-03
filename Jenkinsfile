@@ -7,7 +7,7 @@ pipeline {
       buildDiscarder(logRotator(numToKeepStr: '5'))
    }
    stages {
-      stage('Maven Build & Site') {
+      stage('Maven Build') {
          agent {
             dockerfile {
                reuseNode true
@@ -17,7 +17,7 @@ pipeline {
          }
          steps {
             sh 'mvn -B -DskipTests clean package'
-            sh 'mvn -DskipTests site'
+            sh 'mvn -DskipTests package'
          }
          post {
             success {
