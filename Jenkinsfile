@@ -64,6 +64,9 @@ pipeline {
                args '-v $HOME/.m2:/root/.m2'
             }
          }
+         steps {
+            sh 'echo "Built running container"'
+         }
       }
       //stage('Launch Docker Container') {
       //   when {
