@@ -56,7 +56,8 @@ pipeline {
          }
          steps {
             withMaven(options: [findbugsPublisher(), junitPublisher(ignoreAttachments: false)]) {
-               sh 'mvn findbugs:findbugs site'
+               sh 'mvn site'
+               sh 'mvn findbugs:findbugs'
             }
          }
          post {
