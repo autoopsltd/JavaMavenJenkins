@@ -34,17 +34,38 @@ pipeline {
             }
          }
          steps {
+               sh 'mvn test'
+         }
+         post {
+            success {
+               junit '**/target/surefire-reports/*.xml'
+               echo 'Maven testing completed!'
+            }
+            failure {
+               echo 'Maven testing failed.'
+            }
+         }
+      }
+      stage('Run Findbugs') {
+         agent {
+            dockerfile {
+               reuseNode true
+               additionalBuildArgs '--tag autoopsltd/decmaventest:testing'
+               args '-v $HOME/.m2:/root/.m2'
+            }
+         }
+         steps {
             withMaven(options: [findbugsPublisher(), junitPublisher(ignoreAttachments: false)]) {
-               sh 'mvn findbugs:findbugs test'
+               sh 'mvn findbugs:findbugs site'
             }
          }
          post {
             success {
                junit '**/target/surefire-reports/*.xml'
-               echo 'Maven testing passed!'
+               echo 'Findbug scanning completed!'
             }
             failure {
-               echo 'Maven testing failed.'
+               echo 'Findbug scanning failed.'
             }
          }
       }
