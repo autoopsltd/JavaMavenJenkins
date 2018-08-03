@@ -42,9 +42,9 @@ pipeline {
       }
       stage('Docker Tag & Push') {
          steps {
-            withDockerRegistry([ credentialsId: "dockerhub", url: "http://192.168.1.15:5000"]) {
-               sh 'docker tag autoopsltd/decmaventest:testing 192.168.1.15:5000/decmaventest:latest'
-               sh 'docker push 192.168.1.15:5000/decmaventest:latest'
+            withDockerRegistry([ credentialsId: "dockerhub", url: "http://localhost:5000"]) {
+               sh 'docker tag autoopsltd/decmaventest:testing localhost:5000/decmaventest:latest'
+               sh 'docker push localhost:5000/decmaventest:latest'
             }
          }
       }
