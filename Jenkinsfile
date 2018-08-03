@@ -60,8 +60,8 @@ pipeline {
             branch 'master'
          }
          steps {
-            sh 'docker-compose up -d'
-            sh 'docker ps'
+            //sh 'docker-compose up -d'
+            //sh 'docker ps'
          }
       }
    }
