@@ -59,12 +59,11 @@ pipeline {
             dockerfile {
                filename 'Dockerfile_run'
                reuseNode true
-               additionalBuildArgs '--tag autoopsltd/decmaventest:run'
-               args '-v $HOME/.m2:/root/.m2'
+               additionalBuildArgs '--tag autoopsltd/decmaventest:run''
             }
          }
          steps {
-            sh 'mvn -B -DskipTests clean package'
+            sh 'echo "created runnable container'
          }
       }
       //stage('Launch Docker Container') {
