@@ -128,7 +128,7 @@
 
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.0</version>
+          <version>3.3</version>
         </plugin>
 
         <plugin>
@@ -224,7 +224,7 @@
   </scm>
 
   <prerequisites>
-    <maven>3.3</maven>
+    <maven>3.0.3</maven>
   </prerequisites>
 
 </project>
