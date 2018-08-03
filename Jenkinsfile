@@ -3,6 +3,9 @@ pipeline {
    triggers {
       pollSCM('H/30 * * * *')
    }
+   options {
+       buildDiscarder(logRotator(numToKeepStr: '5'))
+   }
    stages {
       stage('Maven Build') {
          agent {
