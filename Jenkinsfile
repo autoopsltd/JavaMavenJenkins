@@ -59,7 +59,6 @@ pipeline {
             dockerfile {
                reuseNode true
                additionalBuildArgs '--tag autoopsltd/decmaventest:run'
-               args '-v $HOME/.m2:/root/.m2'
             }
          }
          steps {
