@@ -49,15 +49,15 @@ pipeline {
             }
          }
       }
-      //stage('Launch Docker Container') {
-      //   when {
-      //      branch 'master'
-      //   }
-      //   steps {
-      //      sh 'docker-compose up -d'
-      //      sh 'docker ps'
-      //   }
-      //}
+      stage('Launch Docker Container') {
+         when {
+            branch 'master'
+         }
+         steps {
+            sh 'docker-compose up -d'
+            //sh 'docker ps'
+         }
+      }
    }
    post {
       always {
