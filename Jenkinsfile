@@ -17,7 +17,7 @@ pipeline {
          }
          steps {
             sh 'mvn clean package'
-            sh 'cd /root && ./mvnw spring-boot:run'
+            sh 'unset MAVEN_CONFIG && env && cd /root && ./mvnw spring-boot:start'
          }
          post {
             success {
