@@ -67,12 +67,15 @@ pipeline {
       }
       unstable {
          echo 'Declarative pipeline job "decMavenTest" is unstable - please view the logs.'
+         mail to: 'autoopsltd@outlook.com',
+              subject: "Unstable Pipeline: ${currentBuild.fullDisplayName}",
+              body: "Unstable - Something is wrong with ${env.BUILD_URL}"
       }
       failure {
          echo 'Declarative pipeline job "decMavenTest" failed - please view the logs.'
          mail to: 'autoopsltd@outlook.com',
               subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-              body: "Something is wrong with ${env.BUILD_URL}"
+              body: "Failed - Something is wrong with ${env.BUILD_URL}"
       }
    }
 }
