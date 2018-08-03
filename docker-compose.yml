@@ -1,7 +1,7 @@
 version: '3'
 services:
   decMavenTest:
-    image: localhost:5000/decmaventest:run
+    image: autoopsltd/decmaventest:run
     ports: 
       - 8081:8080
     working_dir: /root
