@@ -1,4 +1,0 @@
-FROM maven:alpine
-COPY . /root
-WORKDIR /root
-ENTRYPOINT ./mvnw spring-boot:run

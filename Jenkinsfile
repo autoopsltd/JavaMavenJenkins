@@ -7,7 +7,7 @@ pipeline {
       buildDiscarder(logRotator(numToKeepStr: '5'))
    }
    stages {
-      stage('Maven Build') {
+      stage('Maven Build & Test') {
          agent {
             dockerfile {
                reuseNode true
@@ -16,55 +16,29 @@ pipeline {
             }
          }
          steps {
-            sh 'mvn -B -DskipTests clean package'
+            sh 'mvn clean package'
+            sh 'cd /root && ./mvnw spring-boot:run'
          }
          post {
             success {
-               echo 'Maven packaging worked!'
+               echo 'Maven packaging & testing worked!'
                archiveArtifacts artifacts: '**/target/*.war, **/target/*.jar'
-            }
-         }
-      }
-      stage('Maven Test') {
-         agent {
-            dockerfile {
-               reuseNode true
-               additionalBuildArgs '--tag autoopsltd/decmaventest:testing'
-               args '-v $HOME/.m2:/root/.m2'
-            }
-         }
-         steps {
-               sh 'mvn test'
-         }
-         post {
-            success {
                junit '**/target/surefire-reports/*.xml'
-               echo 'Maven testing completed!'
-            }
-            failure {
-               echo 'Maven testing failed.'
-            }
-         }
-      }
-      stage('Docker Tag & Push') {
-         steps {
-            withDockerRegistry([ credentialsId: "dockerhub", url: "http://localhost:5000"]) {
-               sh 'docker tag autoopsltd/decmaventest:testing localhost:5000/decmaventest:latest'
-               sh 'docker push localhost:5000/decmaventest:latest'
             }
          }
       }
       stage('Build Runnable Container') {
          agent {
             dockerfile {
+               filename 'dockerfile_w'
                reuseNode true
                additionalBuildArgs '--tag autoopsltd/decmaventest:run'
             }
          }
          steps {
             //sh 'mvn -B -DskipTests clean package'
-            //sh 'echo "Runnable container created"'
-            sh 'unset MAVEN_CONFIG && env && /root/mvnw spring-boot:start'
+            sh 'echo "Runnable container created"'
+            //sh 'unset MAVEN_CONFIG && env && /root/mvnw spring-boot:start'
          }
       }
       stage('Docker Tag & Push Runnable') {
