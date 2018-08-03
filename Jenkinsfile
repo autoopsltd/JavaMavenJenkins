@@ -63,7 +63,7 @@ pipeline {
             }
          }
          steps {
-            sh 'echo "created runnable container'
+            sh 'echo "created runnable container"'
          }
       }
       //stage('Launch Docker Container') {
