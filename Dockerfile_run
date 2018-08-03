@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-COPY target/decMavenTest-0.0.1-SNAPSHOT.jar /root/app.jar
-CMD ["pwd"]
+FROM maven:alpine
+COPY . /root
+WORKDIR /root
+CMD ["mvn seedstack:run"]
