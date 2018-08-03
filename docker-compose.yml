@@ -1,0 +1,8 @@
+version: '3'
+services:
+  decMavenTest:
+    image: localhost:5000/decmaventest:latest
+    ports: 
+      - 8081:8080
+    working_dir: /root
+    command: mvn spring-boot:run
