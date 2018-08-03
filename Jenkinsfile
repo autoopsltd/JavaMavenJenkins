@@ -7,7 +7,7 @@ pipeline {
       buildDiscarder(logRotator(numToKeepStr: '5'))
    }
    stages {
-      stage('Maven Build') {
+      stage('Maven Build & Site') {
          agent {
             dockerfile {
                reuseNode true
@@ -53,6 +53,15 @@ pipeline {
                sh 'docker tag autoopsltd/decmaventest:testing localhost:5000/decmaventest:latest'
                sh 'docker push localhost:5000/decmaventest:latest'
             }
+         }
+      }
+      stage('Launch Docker Container') {
+         when {
+            branch 'master'
+         }
+         steps {
+            sh 'docker-compose up -d'
+            sh 'docker ps'
          }
       }
    }
