@@ -59,7 +59,7 @@ pipeline {
             dockerfile {
                filename 'Dockerfile_run'
                reuseNode true
-               additionalBuildArgs '--tag autoopsltd/decmaventest:run''
+               additionalBuildArgs '--tag autoopsltd/decmaventest:run'
             }
          }
          steps {
