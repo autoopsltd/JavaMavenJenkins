@@ -6,9 +6,6 @@ pipeline {
    options {
       buildDiscarder(logRotator(numToKeepStr: '5'))
    }
-   parameters {
-      choice(choices: 'yes\nno', description: 'Are you sure you want to execute this test?', name: 'run_test_only')
-   }
    stages {
       stage('Maven Build') {
          agent {
@@ -35,6 +32,9 @@ pipeline {
                additionalBuildArgs '--tag autoopsltd/decmaventest:testing'
                args '-v $HOME/.m2:/root/.m2'
             }
+         }
+         parameters {
+            choice(choices: 'yes\nno', description: 'Are you sure you want to execute this test?', name: 'run_test_only')
          }
          when {
             environment name: 'run_test_only', value: 'yes'
