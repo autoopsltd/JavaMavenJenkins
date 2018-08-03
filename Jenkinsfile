@@ -30,7 +30,7 @@ pipeline {
       stage('Build Runnable Container') {
          agent {
             dockerfile {
-               filename 'dockerfile_w'
+               filename 'Dockerfile_w'
                reuseNode true
                additionalBuildArgs '--tag autoopsltd/decmaventest:run'
             }
