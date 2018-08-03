@@ -46,27 +46,6 @@ pipeline {
             }
          }
       }
-      stage('Run Checkstyle') {
-         agent {
-            dockerfile {
-               reuseNode true
-               additionalBuildArgs '--tag autoopsltd/decmaventest:testing'
-               args '-v $HOME/.m2:/root/.m2'
-            }
-         }
-         steps {
-               sh 'mvn checkstyle:checkstyle site'
-         }
-         post {
-            success {
-               junit '**/target/surefire-reports/*.xml'
-               echo 'Findbug scanning completed!'
-            }
-            failure {
-               echo 'Findbug scanning failed.'
-            }
-         }
-      }
       stage('Docker Tag & Push') {
          steps {
             withDockerRegistry([ credentialsId: "dockerhub", url: "http://localhost:5000"]) {
